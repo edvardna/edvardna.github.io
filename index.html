@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edvárd Nagy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0a0a0a;
+      color: white;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 60px;
+      font-size: 28px;
+    }
+
+    p {
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .hero {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: #1a1a1a;
+    }
+
+    .title {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #4da6ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media(max-width: 700px) {
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>Edvárd Nagy</h1>
+    <p>Electronics Engineering | Robotics | IoT</p>
+  </div>
+
+  <h2>About</h2>
+  <p>
+    Engineering student focused on robotics systems, IoT, and product development.
+    I build real-world projects including autonomous vehicles, embedded systems, and connected devices.
+  </p>
+
+  <h2>Projects</h2>
+
+  <div class="projects">
+
+    <div class="card">
+      <div class="title">Robocar</div>
+      <p>ESP32-powered mecanum robot with MQTT control, OTA updates, and multi-sensor navigation.</p>
+    </div>
+
+    <div class="card">
+      <div class="title">IoT System</div>
+      <p>End-to-end IoT pipeline using MQTT, Raspberry Pi, MongoDB, Redis, and a live dashboard.</p>
+    </div>
+
+    <div class="card">
+      <div class="title">Power Bank</div>
+      <p>Custom 18650 battery pack with BMS, boost converter, and USB output design.</p>
+    </div>
+
+    <div class="card">
+      <div class="title">Watch Design</div>
+      <p>Ilmarinen Taika – luxury-inspired custom watch design, branding, and product concept.</p>
+    </div>
+
+  </div>
+
+  <h2>Contact</h2>
+  <p>
+    GitHub: <a href="https://github.com/edvardna" target="_blank">github.com/edvardna</a>
+  </p>
+
+</div>
+
+</body>
+</html>
