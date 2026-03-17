@@ -7,8 +7,8 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0a0a0a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
+      background: #0b0b0b;
       color: white;
     }
 
@@ -21,23 +21,49 @@
     h1 {
       font-size: 48px;
       margin-bottom: 10px;
+      font-weight: 600;
     }
 
     h2 {
-      margin-top: 60px;
-      font-size: 28px;
+      margin-top: 80px;
+      font-size: 24px;
+      color: #ddd;
+      font-weight: 500;
     }
 
     p {
       color: #aaa;
       line-height: 1.6;
+      max-width: 600px;
     }
 
     .hero {
-      text-align: center;
       margin-top: 100px;
     }
 
+    /* 🔥 Skills grid */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .skill {
+      background: #151515;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #ccc;
+      transition: 0.2s;
+    }
+
+    .skill:hover {
+      background: #1f1f1f;
+      color: white;
+    }
+
+    /* Projects */
     .projects {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -53,22 +79,18 @@
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       background: #1a1a1a;
     }
 
     .title {
-      font-size: 20px;
-      margin-bottom: 10px;
+      font-size: 18px;
+      margin-bottom: 8px;
     }
 
     a {
       color: #4da6ff;
       text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
     }
 
     @media(max-width: 700px) {
@@ -92,38 +114,52 @@
     <p>Electronics Engineering | Robotics | IoT</p>
   </div>
 
-  <h2>About</h2>
-  <p>
-    Engineering student focused on robotics systems, IoT, and product development.
-    I build real-world projects including autonomous vehicles, embedded systems, and connected devices.
-  </p>
+  <!-- 🔥 CORE SKILLS -->
+  <h2>Core Skills</h2>
 
+  <div class="skills">
+    <div class="skill">ESP32 / Arduino</div>
+    <div class="skill">Embedded Systems</div>
+    <div class="skill">C / C++</div>
+    <div class="skill">MQTT (HiveMQ)</div>
+    <div class="skill">IoT Systems</div>
+    <div class="skill">Raspberry Pi</div>
+    <div class="skill">Electronics Design</div>
+    <div class="skill">Battery Systems (Li-ion, BMS)</div>
+    <div class="skill">3D Printing (Bambu, Neptune)</div>
+    <div class="skill">Fusion 360 / Onshape</div>
+    <div class="skill">Robotics (Mecanum)</div>
+    <div class="skill">Web Control Interfaces</div>
+  </div>
+
+  <!-- PROJECTS -->
   <h2>Projects</h2>
 
   <div class="projects">
 
     <div class="card">
       <div class="title">Robocar</div>
-      <p>ESP32-powered mecanum robot with MQTT control, OTA updates, and multi-sensor navigation.</p>
+      <p>ESP32-powered mecanum robot with MQTT control, OTA updates, and sensor fusion.</p>
     </div>
 
     <div class="card">
-      <div class="title">IoT System</div>
-      <p>End-to-end IoT pipeline using MQTT, Raspberry Pi, MongoDB, Redis, and a live dashboard.</p>
+      <div class="title">IoT Pipeline</div>
+      <p>MQTT → Raspberry Pi → MongoDB/Redis/PostgreSQL with live dashboard.</p>
     </div>
 
     <div class="card">
-      <div class="title">Power Bank</div>
-      <p>Custom 18650 battery pack with BMS, boost converter, and USB output design.</p>
+      <div class="title">Power Systems</div>
+      <p>Custom 18650 battery packs, BMS integration, and power management design.</p>
     </div>
 
     <div class="card">
       <div class="title">Watch Design</div>
-      <p>Ilmarinen Taika – luxury-inspired custom watch design, branding, and product concept.</p>
+      <p>Ilmarinen Taika – product design, branding, and luxury concept development.</p>
     </div>
 
   </div>
 
+  <!-- CONTACT -->
   <h2>Contact</h2>
   <p>
     GitHub: <a href="https://github.com/edvardna" target="_blank">github.com/edvardna</a>
