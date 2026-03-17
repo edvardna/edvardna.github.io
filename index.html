@@ -8,96 +8,78 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
-      background: #0b0b0b;
-      color: white;
+      background: #f5f5f7;
+      color: #1d1d1f;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 900px;
       margin: auto;
-      padding: 60px 20px;
+      padding: 80px 20px;
     }
 
     h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+      font-size: 52px;
       font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #6e6e73;
+      margin-bottom: 40px;
     }
 
     h2 {
       margin-top: 80px;
-      font-size: 24px;
-      color: #ddd;
+      font-size: 22px;
       font-weight: 500;
     }
 
-    p {
-      color: #aaa;
-      line-height: 1.6;
-      max-width: 600px;
+    /* 🔵 accent line */
+    .line {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #007aff, #5ac8fa);
+      border-radius: 2px;
+      margin: 10px 0 20px;
     }
 
-    .hero {
-      margin-top: 100px;
-    }
-
-    /* 🔥 Skills grid */
+    /* ✨ skills pills */
     .skills {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 20px;
     }
 
     .skill {
-      background: #151515;
+      background: white;
       padding: 10px 16px;
-      border-radius: 20px;
+      border-radius: 999px;
       font-size: 14px;
-      color: #ccc;
+      color: #333;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       transition: 0.2s;
     }
 
     .skill:hover {
-      background: #1f1f1f;
-      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
     }
 
-    /* Projects */
-    .projects {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .card {
-      background: #111;
-      padding: 20px;
-      border-radius: 12px;
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      background: #1a1a1a;
-    }
-
-    .title {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    a {
-      color: #4da6ff;
-      text-decoration: none;
+    /* subtle floating circle */
+    .bg-circle {
+      position: absolute;
+      top: 100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #dbeafe, transparent);
+      border-radius: 50%;
+      z-index: -1;
     }
 
     @media(max-width: 700px) {
-      .projects {
-        grid-template-columns: 1fr;
-      }
-
       h1 {
         font-size: 36px;
       }
@@ -107,63 +89,32 @@
 
 <body>
 
+<div class="bg-circle"></div>
+
 <div class="container">
 
-  <div class="hero">
-    <h1>Edvárd Nagy</h1>
-    <p>Electronics Engineering | Robotics | IoT</p>
+  <h1>Edvárd Nagy</h1>
+  <div class="subtitle">
+    Electronics Engineering · Robotics · IoT
   </div>
 
-  <!-- 🔥 CORE SKILLS -->
   <h2>Core Skills</h2>
+  <div class="line"></div>
 
   <div class="skills">
-    <div class="skill">ESP32 / Arduino</div>
     <div class="skill">Embedded Systems</div>
+    <div class="skill">ESP32 / Arduino</div>
     <div class="skill">C / C++</div>
     <div class="skill">MQTT (HiveMQ)</div>
     <div class="skill">IoT Systems</div>
     <div class="skill">Raspberry Pi</div>
     <div class="skill">Electronics Design</div>
-    <div class="skill">Battery Systems (Li-ion, BMS)</div>
-    <div class="skill">3D Printing (Bambu, Neptune)</div>
-    <div class="skill">Fusion 360 / Onshape</div>
-    <div class="skill">Robotics (Mecanum)</div>
-    <div class="skill">Web Control Interfaces</div>
+    <div class="skill">Battery Systems</div>
+    <div class="skill">3D Printing</div>
+    <div class="skill">Fusion 360 / CAD</div>
+    <div class="skill">Robotics</div>
+    <div class="skill">Web Interfaces</div>
   </div>
-
-  <!-- PROJECTS -->
-  <h2>Projects</h2>
-
-  <div class="projects">
-
-    <div class="card">
-      <div class="title">Robocar</div>
-      <p>ESP32-powered mecanum robot with MQTT control, OTA updates, and sensor fusion.</p>
-    </div>
-
-    <div class="card">
-      <div class="title">IoT Pipeline</div>
-      <p>MQTT → Raspberry Pi → MongoDB/Redis/PostgreSQL with live dashboard.</p>
-    </div>
-
-    <div class="card">
-      <div class="title">Power Systems</div>
-      <p>Custom 18650 battery packs, BMS integration, and power management design.</p>
-    </div>
-
-    <div class="card">
-      <div class="title">Watch Design</div>
-      <p>Ilmarinen Taika – product design, branding, and luxury concept development.</p>
-    </div>
-
-  </div>
-
-  <!-- CONTACT -->
-  <h2>Contact</h2>
-  <p>
-    GitHub: <a href="https://github.com/edvardna" target="_blank">github.com/edvardna</a>
-  </p>
 
 </div>
 
