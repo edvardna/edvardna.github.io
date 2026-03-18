@@ -53,7 +53,7 @@
       margin-bottom: 18px;
     }
 
-    /* SKILLS */
+    /* skills */
     .skills {
       display: flex;
       flex-wrap: wrap;
@@ -80,9 +80,18 @@
     .skill.active {
       background: #007aff;
       color: white;
+      box-shadow: 0 10px 28px rgba(0,122,255,0.24);
     }
 
-    /* FILTER BUTTON */
+    /* filter bar */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
     .filter-button {
       background: white;
       border: none;
@@ -92,10 +101,15 @@
       font-size: 14px;
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      margin-bottom: 20px;
+      transition: 0.25s;
     }
 
-    /* PROJECTS */
+    .filter-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.09);
+    }
+
+    /* projects */
     .projects {
       display: flex;
       flex-direction: column;
@@ -139,6 +153,7 @@
       background: #f0f0f5;
       padding: 7px 10px;
       border-radius: 999px;
+      white-space: nowrap;
     }
 
     .project-desc {
@@ -163,6 +178,12 @@
       color: #555;
     }
 
+    .project-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .btn {
       text-decoration: none;
       font-size: 14px;
@@ -174,7 +195,7 @@
       text-decoration: underline;
     }
 
-    /* BLOBS */
+    /* blobs */
     .blob {
       position: absolute;
       border-radius: 50%;
@@ -199,7 +220,7 @@
       left: -120px;
     }
 
-    /* GRID */
+    /* grid */
     .grid {
       position: absolute;
       width: 100%;
@@ -209,6 +230,17 @@
         linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
       z-index: 0;
+    }
+
+    @media(max-width: 700px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .project-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -221,100 +253,307 @@
 
 <div class="container">
 
-<h1>Edvárd Nagy</h1>
-<div class="subtitle">From Voltage to Vision</div>
+  <h1>Edvárd Nagy</h1>
+  <div class="subtitle">From Voltage to Vision</div>
 
-<h2>Core Skills</h2>
-<div class="line"></div>
-<div class="section-note">Click a skill to filter projects</div>
+  <!-- Core Skills -->
+  <h2>Core Skills</h2>
+  <div class="line"></div>
+  <div class="section-note">Click a skill to filter the projects below.</div>
 
-<div class="skills">
-  <button class="skill" data-filter="Embedded Systems">Embedded Systems</button>
-  <button class="skill" data-filter="C / C++">C / C++</button>
-  <button class="skill" data-filter="IoT Systems">IoT Systems</button>
-  <button class="skill" data-filter="Electronics Design">Electronics Design</button>
-  <button class="skill" data-filter="Electrical Engineering">Electrical Engineering</button>
-  <button class="skill" data-filter="Automation">Automation</button>
-  <button class="skill" data-filter="Lighting Design">Lighting Design</button>
-  <button class="skill" data-filter="Battery Systems">Battery Systems</button>
-  <button class="skill" data-filter="3D Printing">3D Printing</button>
-  <button class="skill" data-filter="CAD Design">CAD Design</button>
-  <button class="skill" data-filter="Robotics">Robotics</button>
-  <button class="skill" data-filter="Web Interfaces">Web Interfaces</button>
-</div>
-
-<h2>Projects</h2>
-<div class="line"></div>
-
-<button class="filter-button" id="reset">All Projects</button>
-
-<div class="projects">
-
-<!-- ROBOTCAR -->
-<div class="project" data-skills="Embedded Systems, C / C++, IoT Systems, Robotics, Web Interfaces, Electronics Design, CAD Design, 3D Printing, Automation">
-  <div class="project-top">
-    <h3 class="project-title">Robocar IoT System</h3>
-    <div class="project-type">Featured</div>
+  <div class="skills" id="skillsFilter">
+    <button class="skill" data-filter="Embedded Systems">Embedded Systems</button>
+    <button class="skill" data-filter="C / C++">C / C++</button>
+    <button class="skill" data-filter="IoT Systems">IoT Systems</button>
+    <button class="skill" data-filter="Electronics Design">Electronics Design</button>
+    <button class="skill" data-filter="Electrical Engineering">Electrical Engineering</button>
+    <button class="skill" data-filter="Automation">Automation</button>
+    <button class="skill" data-filter="PLC Systems">PLC Systems</button>
+    <button class="skill" data-filter="Lighting Design">Lighting Design</button>
+    <button class="skill" data-filter="Battery Systems">Battery Systems</button>
+    <button class="skill" data-filter="3D Printing">3D Printing</button>
+    <button class="skill" data-filter="CAD Design">CAD Design</button>
+    <button class="skill" data-filter="Robotics">Robotics</button>
+    <button class="skill" data-filter="Web Interfaces">Web Interfaces</button>
   </div>
-  <div class="project-desc">MQTT robot with OTA, sensors, web control.</div>
-  <div class="tags">
-    <span>Embedded Systems</span><span>C / C++</span><span>IoT Systems</span><span>Robotics</span><span>Web Interfaces</span><span>Electronics Design</span><span>CAD Design</span><span>3D Printing</span><span>Automation</span>
-  </div>
-  <a href="https://github.com/edvardna/ROBOCAR_OTA" target="_blank" class="btn">View Project →</a>
-</div>
 
-<!-- DINO -->
-<div class="project" data-skills="C / C++, Electronics Design, Battery Systems, CAD Design, 3D Printing">
-  <div class="project-top">
-    <h3 class="project-title">Dino Game Console</h3>
-    <div class="project-type">Featured</div>
-  </div>
-  <div class="project-desc">Portable embedded console.</div>
-  <div class="tags">
-    <span>C / C++</span><span>Electronics Design</span><span>Battery Systems</span><span>CAD Design</span><span>3D Printing</span>
-  </div>
-  <a href="https://github.com/edvardna/Dino-game-console" target="_blank" class="btn">View Project →</a>
-</div>
+  <!-- Projects -->
+  <h2>Projects</h2>
+  <div class="line"></div>
 
-<!-- SMART PLANT -->
-<div class="project" data-skills="Embedded Systems, C / C++, IoT Systems, Automation, Electronics Design, CAD Design, 3D Printing, Battery Systems">
-  <div class="project-top">
-    <h3 class="project-title">Smart Plant System</h3>
-    <div class="project-type">Featured</div>
+  <div class="filter-bar">
+    <button class="filter-button" id="showAllBtn">All Projects</button>
   </div>
-  <div class="project-desc">Smart plant monitoring.</div>
-  <div class="tags">
-    <span>Embedded Systems</span><span>C / C++</span><span>IoT Systems</span><span>Automation</span><span>Electronics Design</span><span>CAD Design</span><span>3D Printing</span><span>Battery Systems</span>
+
+  <div class="projects" id="projectsList">
+
+    <!-- ========================================================= -->
+    <!-- ================= ROBOTCAR IOT SYSTEM =================== -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="Embedded Systems, C / C++, IoT Systems, Robotics, Web Interfaces, Electronics Design, CAD Design, 3D Printing, Automation">
+      <div class="project-top">
+        <h3 class="project-title">Robocar IoT System</h3>
+        <div class="project-type">Featured Project</div>
+      </div>
+      <div class="project-desc">
+        Cloud-connected mecanum robot with MQTT communication, OTA updates, real-time sensor feedback, web control, and autonomous maze navigation features.
+      </div>
+      <div class="tags">
+        <span>Embedded Systems</span>
+        <span>C / C++</span>
+        <span>IoT Systems</span>
+        <span>Robotics</span>
+        <span>Web Interfaces</span>
+        <span>Electronics Design</span>
+        <span>CAD Design</span>
+        <span>3D Printing</span>
+        <span>Automation</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/ROBOCAR_OTA" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ================= DINO GAME CONSOLE ===================== -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="C / C++, Electronics Design, Battery Systems, CAD Design, 3D Printing">
+      <div class="project-top">
+        <h3 class="project-title">Dino Game Console</h3>
+        <div class="project-type">Featured Project</div>
+      </div>
+      <div class="project-desc">
+        Portable embedded gaming console with real-time gameplay, display control, physical input handling, and rechargeable battery-powered hardware design.
+      </div>
+      <div class="tags">
+        <span>C / C++</span>
+        <span>Electronics Design</span>
+        <span>Battery Systems</span>
+        <span>CAD Design</span>
+        <span>3D Printing</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/Dino-game-console" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ================= SMART PLANT SYSTEM ==================== -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="Embedded Systems, C / C++, IoT Systems, Automation, Electronics Design, CAD Design, 3D Printing, Battery Systems">
+      <div class="project-top">
+        <h3 class="project-title">Smart Plant System</h3>
+        <div class="project-type">Featured Project</div>
+      </div>
+      <div class="project-desc">
+        Sensor-based plant monitoring and automation system designed for real-time environmental tracking and expandable smart care functionality.
+      </div>
+      <div class="tags">
+        <span>Embedded Systems</span>
+        <span>C / C++</span>
+        <span>IoT Systems</span>
+        <span>Automation</span>
+        <span>Electronics Design</span>
+        <span>CAD Design</span>
+        <span>3D Printing</span>
+        <span>Battery Systems</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/smart-plant-project" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ================= WATCH SWIPE APP ======================= -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="IoT Systems, Web Interfaces">
+      <div class="project-top">
+        <h3 class="project-title">Watch Swipe App</h3>
+        <div class="project-type">Grouped Project</div>
+      </div>
+      <div class="project-desc">
+        Swipe-based watch discovery interface with Firebase-backed preference collection to support data-driven design decisions.
+      </div>
+      <div class="tags">
+        <span>IoT Systems</span>
+        <span>Web Interfaces</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/electronics-projects/tree/main/watch-swipe-app" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ================= CUSTOM POWER BANK ===================== -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="Battery Systems, Electronics Design, Electrical Engineering, CAD Design, 3D Printing">
+      <div class="project-top">
+        <h3 class="project-title">Custom Power Bank</h3>
+        <div class="project-type">Grouped Project</div>
+      </div>
+      <div class="project-desc">
+        Portable 18650-based power bank with BMS protection, boost conversion, USB output, and integrated wireless charging.
+      </div>
+      <div class="tags">
+        <span>Battery Systems</span>
+        <span>Electronics Design</span>
+        <span>Electrical Engineering</span>
+        <span>CAD Design</span>
+        <span>3D Printing</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/electronics-projects/tree/main/custom-power-bank" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ================= IOT EDGE DATA PIPELINE ================ -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="IoT Systems, Web Interfaces, Embedded Systems, C / C++">
+      <div class="project-top">
+        <h3 class="project-title">IoT Edge Data Pipeline</h3>
+        <div class="project-type">Grouped Project</div>
+      </div>
+      <div class="project-desc">
+        Raspberry Pi based IoT pipeline using MQTT, Python, MongoDB, Redis, PostgreSQL, and Flask for real-time sensor processing and dashboard visualization.
+      </div>
+      <div class="tags">
+        <span>IoT Systems</span>
+        <span>Web Interfaces</span>
+        <span>Embedded Systems</span>
+        <span>C / C++</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/electronics-projects/tree/main/iot-edge-data-pipeline" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ========== CUSTOM 2-BIT MICROCONTROLLER SYSTEM ========= -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="Electronics Design, Embedded Systems">
+      <div class="project-top">
+        <h3 class="project-title">Custom 2-Bit Microcontroller System</h3>
+        <div class="project-type">Grouped Project</div>
+      </div>
+      <div class="project-desc">
+        ALU-based 2-bit microcontroller architecture with registers, control logic, SRAM, and clocked execution designed in Logisim and Multisim.
+      </div>
+      <div class="tags">
+        <span>Electronics Design</span>
+        <span>Embedded Systems</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/electronics-projects/tree/main/digital-alu-2bit" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ================= PARAMETRIC BALL CHAIR ================ -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="CAD Design, 3D Printing">
+      <div class="project-top">
+        <h3 class="project-title">Parametric Ball Chair</h3>
+        <div class="project-type">Grouped Project</div>
+      </div>
+      <div class="project-desc">
+        Modular 3D printable reinterpretation of the classic ball chair, developed through parametric CAD and additive manufacturing thinking.
+      </div>
+      <div class="tags">
+        <span>CAD Design</span>
+        <span>3D Printing</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/electronics-projects/tree/main/parametric-ball-chair" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ================= LIGHTING DESIGN PORTFOLIO ============ -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="Lighting Design, Electrical Engineering, CAD Design, Automation">
+      <div class="project-top">
+        <h3 class="project-title">Lighting Design Portfolio</h3>
+        <div class="project-type">Grouped Project</div>
+      </div>
+      <div class="project-desc">
+        Professional lighting design portfolio covering residential, commercial, facade, industrial, architectural, emergency, sports, DMX, and custom fixture work.
+      </div>
+      <div class="tags">
+        <span>Lighting Design</span>
+        <span>Electrical Engineering</span>
+        <span>CAD Design</span>
+        <span>Automation</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/electronics-projects/tree/main/Lighting%20Design" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- ================= AUDI DRIFT DASHBOARD TOY ============= -->
+    <!-- ========================================================= -->
+    <div class="project" data-skills="CAD Design, 3D Printing">
+      <div class="project-top">
+        <h3 class="project-title">Audi Drift Dashboard Toy</h3>
+        <div class="project-type">Grouped Project</div>
+      </div>
+      <div class="project-desc">
+        Audi-inspired interactive mechanical dashboard concept combining automotive styling, physical interaction, and custom product design.
+      </div>
+      <div class="tags">
+        <span>CAD Design</span>
+        <span>3D Printing</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/edvardna/electronics-projects/tree/main/Audi-drift-dashboard-toy" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      </div>
+    </div>
+
   </div>
-  <a href="https://github.com/edvardna/smart-plant-project" target="_blank" class="btn">View Project →</a>
-</div>
-
-</div>
-
 </div>
 
 <script>
-const skills = document.querySelectorAll('.skill');
-const projects = document.querySelectorAll('.project');
-const reset = document.getElementById('reset');
+  const skillButtons = document.querySelectorAll('.skill');
+  const projects = document.querySelectorAll('.project');
+  const showAllBtn = document.getElementById('showAllBtn');
 
-skills.forEach(btn => {
-  btn.onclick = () => {
-    const filter = btn.dataset.filter;
+  let activeFilter = null;
 
-    skills.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    projects.forEach(p => {
-      p.style.display = p.dataset.skills.includes(filter) ? "block" : "none";
+  function applyFilter(filter) {
+    projects.forEach(project => {
+      const skills = project.dataset.skills.split(',').map(skill => skill.trim());
+      if (!filter || skills.includes(filter)) {
+        project.classList.remove('hidden');
+      } else {
+        project.classList.add('hidden');
+      }
     });
-  };
-});
+  }
 
-reset.onclick = () => {
-  skills.forEach(b => b.classList.remove('active'));
-  projects.forEach(p => p.style.display = "block");
-};
+  skillButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedSkill = button.dataset.filter;
+
+      if (activeFilter === selectedSkill) {
+        activeFilter = null;
+        skillButtons.forEach(btn => btn.classList.remove('active'));
+        applyFilter(null);
+        return;
+      }
+
+      activeFilter = selectedSkill;
+      skillButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      applyFilter(selectedSkill);
+    });
+  });
+
+  showAllBtn.addEventListener('click', () => {
+    activeFilter = null;
+    skillButtons.forEach(btn => btn.classList.remove('active'));
+    applyFilter(null);
+  });
 </script>
 
 </body>
