@@ -39,7 +39,6 @@
       font-weight: 500;
     }
 
-    /* ✨ accent line */
     .line {
       width: 60px;
       height: 4px;
@@ -71,6 +70,52 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
+    /* 📦 projects */
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .project {
+      background: white;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .project-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: #6e6e73;
+      margin-bottom: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tags span {
+      font-size: 12px;
+      background: #f0f0f5;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #555;
+    }
+
     /* 🌈 background blobs */
     .blob {
       position: absolute;
@@ -96,7 +141,7 @@
       left: -120px;
     }
 
-    /* subtle grid */
+    /* grid */
     .grid {
       position: absolute;
       width: 100%;
@@ -118,7 +163,6 @@
 <body>
 
 <div class="grid"></div>
-
 <div class="blob blob1"></div>
 <div class="blob blob2"></div>
 
@@ -129,24 +173,82 @@
     From Voltage to Vision
   </div>
 
+  <!-- Core Skills -->
   <h2>Core Skills</h2>
   <div class="line"></div>
 
- <div class="skills">
-  <div class="skill">Embedded Systems</div>
-  <div class="skill">C / C++</div>
-  <div class="skill">IoT Systems</div>
-  <div class="skill">Electronics Design</div>
-  <div class="skill">Electrical Engineering</div>
-  <div class="skill">Automation</div>
-  <div class="skill">PLC Systems</div>
-  <div class="skill">Lighting Design</div>
-  <div class="skill">Battery Systems</div>
-  <div class="skill">3D Printing</div>
-  <div class="skill">CAD Design</div>
-  <div class="skill">Robotics</div>
-  <div class="skill">Web Interfaces</div>
-</div>
+  <div class="skills">
+    <div class="skill">Embedded Systems</div>
+    <div class="skill">C / C++</div>
+    <div class="skill">IoT Systems</div>
+    <div class="skill">Electronics Design</div>
+    <div class="skill">Electrical Engineering</div>
+    <div class="skill">Automation</div>
+    <div class="skill">PLC Systems</div>
+    <div class="skill">Lighting Design</div>
+    <div class="skill">Battery Systems</div>
+    <div class="skill">3D Printing</div>
+    <div class="skill">CAD Design</div>
+    <div class="skill">Robotics</div>
+    <div class="skill">Web Interfaces</div>
+  </div>
+
+  <!-- Projects -->
+  <h2>Projects</h2>
+  <div class="line"></div>
+
+  <div class="projects">
+
+    <div class="project">
+      <div class="project-title">Robocar IoT System</div>
+      <div class="project-desc">
+        Mecanum wheel robot with MQTT cloud control, OTA updates, and real-time sensor feedback.
+      </div>
+      <div class="tags">
+        <span>Embedded Systems</span>
+        <span>IoT Systems</span>
+        <span>Robotics</span>
+        <span>C / C++</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-title">Battery Power Bank System</div>
+      <div class="project-desc">
+        Custom 18650 lithium battery pack with BMS, boost converter, and USB output.
+      </div>
+      <div class="tags">
+        <span>Battery Systems</span>
+        <span>Electronics Design</span>
+        <span>Electrical Engineering</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-title">Lighting Design Projects</div>
+      <div class="project-desc">
+        Professional lighting layouts and simulations for residential and commercial environments.
+      </div>
+      <div class="tags">
+        <span>Lighting Design</span>
+        <span>Electrical Engineering</span>
+        <span>CAD Design</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-title">Custom Watch Engineering</div>
+      <div class="project-desc">
+        Designed and built mechanical watches with custom dials, materials, and branding.
+      </div>
+      <div class="tags">
+        <span>CAD Design</span>
+        <span>3D Printing</span>
+        <span>Product Design</span>
+      </div>
+    </div>
+
+  </div>
 
 </div>
 
