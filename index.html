@@ -47,7 +47,6 @@
       margin: 10px 0 25px;
     }
 
-    /* 🔥 skills */
     .skills {
       display: flex;
       flex-wrap: wrap;
@@ -59,10 +58,8 @@
       padding: 10px 16px;
       border-radius: 999px;
       font-size: 14px;
-      color: #333;
       box-shadow: 0 6px 20px rgba(0,0,0,0.06);
       transition: 0.25s;
-      cursor: default;
     }
 
     .skill:hover {
@@ -70,7 +67,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
-    /* 📦 projects */
+    /* PROJECTS */
     .projects {
       display: flex;
       flex-direction: column;
@@ -106,6 +103,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-bottom: 12px;
     }
 
     .tags span {
@@ -116,7 +114,17 @@
       color: #555;
     }
 
-    /* 🌈 background blobs */
+    .btn {
+      text-decoration: none;
+      font-size: 14px;
+      color: #007aff;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      text-decoration: underline;
+    }
+
     .blob {
       position: absolute;
       border-radius: 50%;
@@ -141,7 +149,6 @@
       left: -120px;
     }
 
-    /* grid */
     .grid {
       position: absolute;
       width: 100%;
@@ -153,9 +160,7 @@
     }
 
     @media(max-width: 700px) {
-      h1 {
-        font-size: 36px;
-      }
+      h1 { font-size: 36px; }
     }
   </style>
 </head>
@@ -169,9 +174,7 @@
 <div class="container">
 
   <h1>Edvárd Nagy</h1>
-  <div class="subtitle">
-    From Voltage to Vision
-  </div>
+  <div class="subtitle">From Voltage to Vision</div>
 
   <!-- Core Skills -->
   <h2>Core Skills</h2>
@@ -201,51 +204,38 @@
 
     <div class="project">
       <div class="project-title">Robocar IoT System</div>
-      <div class="project-desc">
-        Mecanum wheel robot with MQTT cloud control, OTA updates, and real-time sensor feedback.
-      </div>
+      <div class="project-desc">Mecanum robot with MQTT cloud control, OTA updates, and real-time sensors.</div>
       <div class="tags">
-        <span>Embedded Systems</span>
-        <span>IoT Systems</span>
-        <span>Robotics</span>
-        <span>C / C++</span>
+        <span>Embedded</span><span>IoT</span><span>MQTT</span><span>C++</span><span>Robotics</span>
       </div>
+      <a href="https://github.com/edvardna" target="_blank" class="btn">View Project →</a>
+    </div>
+
+    <div class="project">
+      <div class="project-title">IoT Edge Data Pipeline</div>
+      <div class="project-desc">Full IoT pipeline with Raspberry Pi, MQTT, and multi-database architecture.</div>
+      <div class="tags">
+        <span>Python</span><span>MQTT</span><span>MongoDB</span><span>Redis</span><span>PostgreSQL</span>
+      </div>
+      <a href="https://github.com/edvardna/iot-edge-data-pipeline" target="_blank" class="btn">View Project →</a>
     </div>
 
     <div class="project">
       <div class="project-title">Battery Power Bank System</div>
-      <div class="project-desc">
-        Custom 18650 lithium battery pack with BMS, boost converter, and USB output.
-      </div>
+      <div class="project-desc">18650 battery pack with BMS, boost converter, USB output and wireless charging.</div>
       <div class="tags">
-        <span>Battery Systems</span>
-        <span>Electronics Design</span>
-        <span>Electrical Engineering</span>
+        <span>Battery</span><span>Power</span><span>Electronics</span><span>Hardware</span>
       </div>
+      <a href="https://github.com/edvardna/electronics-projects/tree/main/custom-power-bank" target="_blank" class="btn">View Project →</a>
     </div>
 
     <div class="project">
       <div class="project-title">Lighting Design Projects</div>
-      <div class="project-desc">
-        Professional lighting layouts and simulations for residential and commercial environments.
-      </div>
+      <div class="project-desc">Professional lighting systems including DMX, architectural and industrial design.</div>
       <div class="tags">
-        <span>Lighting Design</span>
-        <span>Electrical Engineering</span>
-        <span>CAD Design</span>
+        <span>Lighting</span><span>DMX</span><span>CAD</span><span>Electrical</span>
       </div>
-    </div>
-
-    <div class="project">
-      <div class="project-title">Custom Watch Engineering</div>
-      <div class="project-desc">
-        Designed and built mechanical watches with custom dials, materials, and branding.
-      </div>
-      <div class="tags">
-        <span>CAD Design</span>
-        <span>3D Printing</span>
-        <span>Product Design</span>
-      </div>
+      <a href="https://github.com/edvardna/electronics-projects/tree/main/Lighting%20Design" target="_blank" class="btn">View Project →</a>
     </div>
 
   </div>
