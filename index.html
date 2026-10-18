@@ -1,560 +1,504 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>Edvárd Nagy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edvárd Nagy · Engineering Portfolio</title>
+<meta name="description" content="Edvárd Nagy, Production Engineer and electrical engineer (B.Eng., Metropolia UAS). Lighting design, embedded systems, IoT, robotics, CAD and mechanical builds.">
+<meta property="og:title" content="Edvárd Nagy · From Voltage to Vision">
+<meta property="og:description" content="Production Engineer and electrical engineer. Lighting design, embedded systems, IoT, robotics and mechanical builds.">
+<meta property="og:image" content="https://edvardna.github.io/assets/dino-proto.jpg">
+<meta name="theme-color" content="#04050a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2304050a'/%3E%3Cpath d='M18 4 9 18h6l-2 10 10-15h-6z' fill='%235ac8fa'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500..800&family=Inter:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04050a;--ink:#f1f4ff;--muted:#8e95ad;--glass:rgba(16,20,36,.5);--line:rgba(255,255,255,.1);--blue:#007aff;--cyan:#5ac8fa;--violet:#a78bfa}
+*{box-sizing:border-box;margin:0;padding:0}
+html.lenis,html.lenis body{height:auto}
+body{background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:8px}
+.mono{font-family:"JetBrains Mono",monospace}
+[style*="overflow: clip"]{padding-bottom:.16em;margin-bottom:-.16em}
+#gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:0}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
-      background: #f5f5f7;
-      color: #1d1d1f;
-      overflow-x: hidden;
-    }
+nav{position:fixed;top:0;left:0;right:0;z-index:20;background:linear-gradient(rgba(4,5,10,.85),rgba(4,5,10,0));display:flex;justify-content:space-between;align-items:center;padding:22px 4vw;font-size:13px}
+nav b{font-family:Syne;font-weight:700;font-size:16px}
+nav .links{display:flex;gap:24px;color:var(--muted)}
+nav .links a:hover{color:var(--ink)}
+.rail{position:fixed;left:4vw;top:50%;translate:0 -50%;z-index:20;display:flex;flex-direction:column;align-items:center;gap:14px;font:500 11px "JetBrains Mono",monospace;color:var(--muted)}
+.rail .tr{width:1px;height:160px;background:var(--line);position:relative;overflow:hidden}
+.rail .tr i{position:absolute;inset:0;background:linear-gradient(var(--cyan),var(--violet));transform-origin:top;transform:scaleY(0)}
 
-    .container {
-      max-width: 950px;
-      margin: auto;
-      padding: 100px 20px;
-      position: relative;
-      z-index: 2;
-    }
+main{position:relative;z-index:1}
+section{min-height:100vh;display:flex;align-items:center;padding:0 10vw;position:relative}
+.hero{flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding-bottom:14vh}
+.hero h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hero .tag{font-family:Syne;font-weight:600;font-size:clamp(22px,3vw,40px);letter-spacing:-.02em}
+.hero .tag em,.hero .tag em div{font-style:normal;background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .role{color:var(--muted);font-size:14px;margin-top:12px}
+.hero .hint{margin-top:5vh;font:500 11px "JetBrains Mono",monospace;color:var(--muted);letter-spacing:.2em}
 
-    h1 {
-      font-size: 54px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
+.intro{justify-content:flex-start}
+.intro .box{max-width:760px}
+.intro p{font-family:Syne;font-weight:600;font-size:clamp(28px,3.8vw,56px);line-height:1.06;letter-spacing:-.03em}
+.intro p em{font-style:normal;color:var(--cyan)}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:5vh}
+.skills span{font-size:13px;padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#d6dbec}
 
-    .subtitle {
-      font-size: 18px;
-      color: #6e6e73;
-      margin-bottom: 60px;
-    }
+.quals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.quals .q{padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-left:2px solid var(--cyan)}
+.quals b{display:block;font-size:14.5px;font-weight:600}
+.quals span{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+.left{justify-content:flex-end}
+.right{justify-content:flex-start}
+.panel{width:min(500px,100%);padding:14px 14px 30px;border-radius:28px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.panel .media{position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;background:#0b0e18;margin-bottom:24px}
+.panel .media img,.panel .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.panel .media img+img,.panel .media video+img{opacity:0}
+.panel .media:hover img+img,.panel .media:hover video+img{opacity:1}
+.panel .media:hover>*{transform:scale(1.04)}
+.panel .media .cap{position:absolute;left:10px;bottom:10px;z-index:2;font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.1em;padding:5px 8px;border-radius:6px;background:rgba(4,5,10,.7);color:#cfd5ea}
+.thumbs{display:flex;gap:6px;margin:-12px 0 22px;overflow-x:auto;scrollbar-width:none}
+.thumbs button{flex:none;width:58px;height:44px;border-radius:9px;overflow:hidden;border:1px solid var(--line);padding:0;background:none;cursor:pointer;opacity:.55;transition:opacity .3s,border-color .3s}
+.thumbs button:hover,.thumbs button.on{opacity:1;border-color:var(--cyan)}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.panel .in{padding:0 18px}
+.panel .k{font:500 11px "JetBrains Mono",monospace;letter-spacing:.2em;color:var(--cyan)}
+.panel h2{font-family:Syne;font-weight:700;font-size:clamp(32px,3.4vw,52px);line-height:.95;letter-spacing:-.035em;margin:12px 0 14px}
+.panel p{color:var(--muted);line-height:1.6;font-size:15px}
+.panel ul{list-style:none;display:grid;gap:8px;margin:18px 0}
+.panel li{font:500 12.5px "JetBrains Mono",monospace;display:flex;gap:10px;align-items:baseline;color:#dfe4f5}
+.panel li:before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);translate:0 -1px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.tags span{font-size:11.5px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);color:#c8cde0}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:999px;background:var(--ink);color:#000;font-weight:600;font-size:14px;position:relative;overflow:hidden}
+.btn span{position:relative;z-index:1}
+.btn:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transform:translateY(101%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.btn:hover:before{transform:none}
 
-    h2 {
-      margin-top: 80px;
-      font-size: 22px;
-      font-weight: 500;
-    }
+.others{flex-direction:column;align-items:stretch;padding:16vh 10vw}
+.others h2{font-family:Syne;font-weight:700;font-size:clamp(44px,6vw,96px);letter-spacing:-.04em;line-height:.9;margin-bottom:6vh}
+.og{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.oc{display:grid;grid-template-columns:150px 1fr;gap:20px;padding:14px;border-radius:22px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:border-color .3s,transform .4s}
+.oc:hover{border-color:rgba(90,200,250,.5);transform:translateY(-6px)}
+.oc .th{border-radius:14px;overflow:hidden;background:#0b0e18;aspect-ratio:1;display:grid;place-items:center}
+.oc .th img{width:100%;height:100%;object-fit:cover}
+.oc .th svg{width:56%;height:56%}
+.oc .tx{padding:8px 6px 8px 0;display:flex;flex-direction:column}
+.oc .k{font:500 11px "JetBrains Mono",monospace;color:var(--cyan);letter-spacing:.14em}
+.oc h3{font-family:Syne;font-size:22px;margin:8px 0 6px;letter-spacing:-.02em}
+.oc p{font-size:13.5px;color:var(--muted);line-height:1.55;flex:1}
+.oc .go{font-size:13px;margin-top:10px;color:#dfe4f5}
 
-    .line {
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, #007aff, #5ac8fa);
-      border-radius: 2px;
-      margin: 10px 0 25px;
-    }
+.end{flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding-bottom:12vh}
+.end p{color:var(--muted);margin-bottom:22px}
+.end small{display:block;margin-top:5vh;color:var(--muted);font:500 11px "JetBrains Mono",monospace;letter-spacing:.15em}
 
-    .section-note {
-      font-size: 14px;
-      color: #6e6e73;
-      margin-bottom: 18px;
-    }
-
-    /* skills */
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .skill {
-      background: white;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 14px;
-      color: #333;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      transition: 0.25s;
-      cursor: pointer;
-      border: none;
-    }
-
-    .skill:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .skill.active {
-      background: #007aff;
-      color: white;
-      box-shadow: 0 10px 28px rgba(0,122,255,0.24);
-    }
-
-    /* filter bar */
-    .filter-bar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .filter-button {
-      background: white;
-      border: none;
-      color: #007aff;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-      transition: 0.25s;
-    }
-
-    .filter-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.09);
-    }
-
-    /* projects */
-    .projects {
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
-
-    .project {
-      background: white;
-      padding: 22px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      transition: 0.3s;
-    }
-
-    .project:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-
-    .project.hidden {
-      display: none;
-    }
-
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 8px;
-    }
-
-    .project-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 0;
-    }
-
-    .project-type {
-      font-size: 12px;
-      color: #6e6e73;
-      background: #f0f0f5;
-      padding: 7px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    .project-desc {
-      font-size: 14px;
-      color: #6e6e73;
-      margin-bottom: 14px;
-      line-height: 1.55;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-
-    .tags span {
-      font-size: 12px;
-      background: #f0f0f5;
-      padding: 6px 10px;
-      border-radius: 999px;
-      color: #555;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      text-decoration: none;
-      font-size: 14px;
-      color: #007aff;
-      font-weight: 500;
-    }
-
-    .btn:hover {
-      text-decoration: underline;
-    }
-
-    /* blobs */
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.4;
-      z-index: 1;
-    }
-
-    .blob1 {
-      width: 300px;
-      height: 300px;
-      background: #007aff;
-      top: 50px;
-      right: -100px;
-    }
-
-    .blob2 {
-      width: 250px;
-      height: 250px;
-      background: #5ac8fa;
-      bottom: 100px;
-      left: -120px;
-    }
-
-    /* grid */
-    .grid {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image:
-        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: 0;
-    }
-
-    @media(max-width: 700px) {
-      h1 {
-        font-size: 36px;
-      }
-
-      .project-top {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+@media (max-width:860px){
+  section{padding:0 6vw;align-items:flex-end;padding-bottom:8vh}
+  .left,.right,.intro{justify-content:center}
+  .rail{display:none}
+  .others{padding:12vh 6vw}
+  .og{grid-template-columns:minmax(0,1fr)}
+  .quals{grid-template-columns:minmax(0,1fr)}
+  .oc{grid-template-columns:minmax(0,1fr);gap:12px}
+  .oc .th{aspect-ratio:16/10}
+  .oc .tx{padding:4px 8px 8px}
+}
+@media (prefers-reduced-motion:reduce){.btn:before,.panel .media *{transition:none}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"}}</script>
 </head>
-
 <body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<nav><b>E/N</b><div class="links"><a href="#s2">Work</a><a href="#s12">More</a><a href="#s13">Contact</a></div></nav>
+<div class="rail" aria-hidden="true"><span id="cur">01</span><div class="tr"><i id="railFill"></i></div><span>14</span></div>
 
-<div class="grid"></div>
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
+<main>
+  <section class="hero" id="s0">
+    <h1>Edvárd Nagy</h1>
+    <div class="tag" id="tag">From <em>Voltage</em> to <em>Vision</em></div>
+    <div class="role">Production Engineer · Electrical Engineer (B.Eng.), Metropolia UAS · Helsinki</div>
+    <div class="hint" aria-hidden="true">MOVE YOUR MOUSE · THEN SCROLL</div>
+  </section>
 
-<div class="container">
-
-  <h1>Edvárd Nagy</h1>
-  <div class="subtitle">From Voltage to Vision</div>
-
-  <!-- Core Skills -->
-  <h2>Core Skills</h2>
-  <div class="line"></div>
-  <div class="section-note">Click a skill to filter the projects below.</div>
-
-  <div class="skills" id="skillsFilter">
-    <button class="skill" data-filter="Embedded Systems">Embedded Systems</button>
-    <button class="skill" data-filter="C / C++">C / C++</button>
-    <button class="skill" data-filter="IoT Systems">IoT Systems</button>
-    <button class="skill" data-filter="Electronics Design">Electronics Design</button>
-    <button class="skill" data-filter="Electrical Engineering">Electrical Engineering</button>
-    <button class="skill" data-filter="Automation">Automation</button>
-    <button class="skill" data-filter="PLC Systems">PLC Systems</button>
-    <button class="skill" data-filter="Lighting Design">Lighting Design</button>
-    <button class="skill" data-filter="Battery Systems">Battery Systems</button>
-    <button class="skill" data-filter="3D Printing">3D Printing</button>
-    <button class="skill" data-filter="CAD Design">CAD Design</button>
-    <button class="skill" data-filter="Robotics">Robotics</button>
-    <button class="skill" data-filter="Web Interfaces">Web Interfaces</button>
-  </div>
-
-  <!-- Projects -->
-  <h2>Projects</h2>
-  <div class="line"></div>
-
-  <div class="filter-bar">
-    <button class="filter-button" id="showAllBtn">All Projects</button>
-  </div>
-
-  <div class="projects" id="projectsList">
-
-    <!-- ========================================================= -->
-    <!-- ================= ROBOTCAR IOT SYSTEM =================== -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="Embedded Systems, C / C++, IoT Systems, Robotics, Web Interfaces, Electronics Design, CAD Design, 3D Printing, Automation">
-      <div class="project-top">
-        <h3 class="project-title">Robocar IoT System</h3>
-        <div class="project-type">Featured Project</div>
+  <section class="intro" id="s1">
+    <div class="box">
+      <p id="introP">Twenty thousand points of light. Like electrons, they only become <em>useful</em> once someone gives them a shape. That's the job.</p>
+      <div class="skills" id="skills">
+        <span>Electrical engineering (B.Eng.)</span><span>Lighting design · DIALux</span><span>Embedded C / C++</span><span>ESP32 · Arduino</span><span>Python</span><span>IoT · MQTT</span><span>Wire harnesses · battery systems</span><span>CAD · SolidWorks · Fusion · Onshape</span><span>3D printing · lathe machining</span><span>AI / LLM integration</span><span>Project management</span>
       </div>
-      <div class="project-desc">
-        Cloud-connected mecanum robot with MQTT communication, OTA updates, real-time sensor feedback, web control, and autonomous maze navigation features.
-      </div>
-      <div class="tags">
-        <span>Embedded Systems</span>
-        <span>C / C++</span>
-        <span>IoT Systems</span>
-        <span>Robotics</span>
-        <span>Web Interfaces</span>
-        <span>Electronics Design</span>
-        <span>CAD Design</span>
-        <span>3D Printing</span>
-        <span>Automation</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/ROBOCAR_OTA" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+      <div class="quals" id="quals">
+        <div class="q"><b>B.Eng. Electrical Engineering</b><span>Metropolia University of Applied Sciences</span></div>
+        <div class="q"><b>S2 Electrical Safety Qualification</b><span>Finland · qualified to supervise electrical work</span></div>
+        <div class="q"><b>Electrician, power installations</b><span>Vocational qualification</span></div>
+        <div class="q"><b>Automation Technician</b><span>Vocational qualification</span></div>
       </div>
     </div>
+  </section>
 
-    <!-- ========================================================= -->
-    <!-- ================= DINO GAME CONSOLE ===================== -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="C / C++, Electronics Design, Battery Systems, CAD Design, 3D Printing">
-      <div class="project-top">
-        <h3 class="project-title">Dino Game Console</h3>
-        <div class="project-type">Featured Project</div>
+  <section class="left" id="s2">
+    <article class="panel">
+      <div class="media"><img src="assets/robocar-2.jpg" alt="Robocar mecanum robot with sensors and OLED" loading="lazy"><img src="assets/robocar-1.jpg" alt="Robocar web control interface" loading="lazy" style="object-fit:contain;background:#fff"><span class="cap">ROBOT · HOVER FOR WEB CONTROLLER</span></div>
+      <div class="in">
+        <div class="k">01 · IOT ROBOTICS</div>
+        <h2>Robocar IoT System</h2>
+        <p>A cloud-connected mecanum robot you drive from a web page. An ESP32-C5 handles Wi-Fi, MQTT and over-the-air updates, while an Arduino Uno reads four ultrasonic sensors. Built with Kevin Kovero.</p>
+        <ul><li>Web D-pad control over MQTT (HiveMQ Cloud)</li><li>OTA firmware updates pulled from GitHub</li><li>Maze mode, 90&deg; turn calibration, auto-stop watchdog</li></ul>
+        <div class="tags"><span>ESP32-C5</span><span>Arduino</span><span>MQTT</span><span>C / C++</span><span>Robotics</span></div>
+        <a class="btn" href="https://github.com/edvardna/ROBOCAR_OTA" target="_blank" rel="noopener"><span>View on GitHub ↗</span></a>
       </div>
-      <div class="project-desc">
-        Portable embedded gaming console with real-time gameplay, display control, physical input handling, and rechargeable battery-powered hardware design.
+    </article>
+  </section>
+
+  <section class="right" id="s3">
+    <article class="panel">
+      <div class="media"><img id="lightMain" src="assets/lighting-1.jpg" alt="Lighting design render of an office lounge" loading="lazy"><span class="cap">SELECTED WORK · CLIENT DETAILS UNDER NDA</span></div>
+      <div class="thumbs" data-main="lightMain"><button type="button" aria-label="Show render 1"><img src="assets/lighting-1.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show render 2"><img src="assets/lighting-2.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show render 3"><img src="assets/lighting-3.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show render 4"><img src="assets/lighting-4.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show render 5"><img src="assets/lighting-5.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show render 6"><img src="assets/lighting-6.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show render 7"><img src="assets/lighting-7.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show render 8"><img src="assets/lighting-8.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show render 9"><img src="assets/lighting-9.jpg" alt="" loading="lazy"></button></div>
+      <div class="in">
+        <div class="k">02 · LIGHTING DESIGN</div>
+        <h2>Lighting Design</h2>
+        <p>Professional lighting design and project management across many real projects: homes, offices, hotels, industrial halls, facades, emergency systems and sports venues. From the first DIALux calculation to photorealistic renders for the client to the finished installation on site. Client names and files stay under NDA, so these are selected visuals only.</p>
+        <ul><li>DIALux evo and 4.13 lighting calculations, photometric analysis</li><li>Photorealistic 4K renders for client presentations</li><li>DMX programming, Barrisol stretch ceilings, custom fixtures</li><li>Interior, facade, industrial, emergency and sports lighting</li><li>Planning and coordination with clients, contractors and installers</li></ul>
+        <div class="tags"><span>DIALux evo</span><span>Photometrics</span><span>DMX</span><span>4K rendering</span><span>Electrical planning</span><span>Project management</span></div>
+        <a class="btn" href="https://github.com/edvardna/electronics-projects/tree/main/Lighting%20Design" target="_blank" rel="noopener"><span>Read the summary ↗</span></a>
       </div>
-      <div class="tags">
-        <span>C / C++</span>
-        <span>Electronics Design</span>
-        <span>Battery Systems</span>
-        <span>CAD Design</span>
-        <span>3D Printing</span>
+    </article>
+  </section>
+
+  <section class="left" id="s4">
+    <article class="panel">
+      <div class="media"><img id="kartMain" src="assets/gokart-2.jpg" alt="Electric go-kart with aluminium frame and red wheels" loading="lazy"><span class="cap">TEAM BUILD · PICK A PHOTO BELOW</span></div>
+      <div class="thumbs" data-main="kartMain"><button type="button" aria-label="Show photo 2"><img src="assets/gokart-2.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show photo 8"><img src="assets/gokart-8.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show photo 6"><img src="assets/gokart-6.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show photo 7"><img src="assets/gokart-7.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show photo 5"><img src="assets/gokart-5.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show photo 3"><img src="assets/gokart-3.jpg" alt="" loading="lazy"></button></div>
+      <div class="in">
+        <div class="k">03 · MECHANICAL ENGINEERING</div>
+        <h2>Electric Go-Kart</h2>
+        <p>An electric go-kart with an aluminium frame, built from scratch as a school team project. I designed parts of it, helped with the assembly, and owned the electrical side.</p>
+        <ul><li>ECU tuning of the electric drive</li><li>All battery wiring and the wire harnesses</li><li>Wheel hubs machined on the lathe</li><li>Part design and assembly with the team</li></ul>
+        <div class="tags"><span>Mechanical engineering</span><span>ECU tuning</span><span>Wire harnesses</span><span>Lathe machining</span><span>Teamwork</span></div>
+        <a class="btn" href="https://github.com/edvardna/electric-go-kart" target="_blank" rel="noopener"><span>View on GitHub ↗</span></a>
       </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/Dino-game-console" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
+    </article>
+  </section>
+
+  <section class="right" id="s5">
+    <article class="panel">
+      <div class="media"><img id="vaultMain" src="assets/vault-1.jpg" alt="Vault 111 AI command center dashboard" loading="lazy" style="object-position:50% 0"><span class="cap">PICK A SCREENSHOT</span></div>
+      <div class="thumbs" data-main="vaultMain"><button type="button" aria-label="Show screenshot 1"><img src="assets/vault-1.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show screenshot 2"><img src="assets/vault-2.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show screenshot 3"><img src="assets/vault-3.jpg" alt="" loading="lazy"></button></div>
+      <div class="in">
+        <div class="k">04 · AI SYSTEMS</div>
+        <h2>Vault 111</h2>
+        <p>A self-hosted AI command center with a Fallout-style dashboard. It runs in a Kali Linux VM, uses local LLMs on the host GPU through Ollama, and puts AI agents, system monitoring and voice into one screen, reachable from any device through a Cloudflare tunnel.</p>
+        <ul><li>Three agents: local Qwen2.5 chat with streaming, a Claude-powered Gmail agent, an idea-rating librarian</li><li>My own GPU voice server (FastAPI + Qwen3-TTS): voice cloning and text-designed voices on an RTX 4070</li><li>Whisper voice input, image upload, 20+ service health checks with auto-fix</li><li>Standalone terminal agent with long-term memory</li></ul>
+        <div class="tags"><span>Python</span><span>Flask</span><span>Ollama</span><span>Claude API</span><span>FastAPI · CUDA</span><span>Cloudflare Tunnel</span></div>
+        <a class="btn" href="https://github.com/edvardna/vault-111" target="_blank" rel="noopener"><span>View on GitHub ↗</span></a>
       </div>
+    </article>
+  </section>
+
+  <section class="left" id="s6">
+    <article class="panel">
+      <div class="media"><img id="siteMain" src="assets/sitegen-1.jpg" alt="Website generated by Sitegen" loading="lazy" style="object-position:50% 0"><span class="cap">PICK A SCREENSHOT</span></div>
+      <div class="thumbs" data-main="siteMain"><button type="button" aria-label="Show screenshot 1"><img src="assets/sitegen-1.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show screenshot 2"><img src="assets/sitegen-2.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show screenshot 3"><img src="assets/sitegen-3.jpg" alt="" loading="lazy"></button><button type="button" aria-label="Show screenshot 4"><img src="assets/sitegen-4.jpg" alt="" loading="lazy"></button></div>
+      <div class="in">
+        <div class="k">05 · AI WEB TOOL</div>
+        <h2>Sitegen</h2>
+        <p>An AI website builder. Fill in a 10-part client brief and it writes a fresh site from scratch, adds real photos, SEO and contact forms, then deploys it live to Cloudflare Pages with its own GitHub repo, in about 30 to 90 seconds.</p>
+        <ul><li>Groq and Cerebras LLMs, no templates, four style presets</li><li>Copies the design language (colours, fonts, spacing) from any reference URL</li><li>Multi-language sites with a language switcher, WhatsApp button and cookie consent</li><li>Built-in prospect finder on OpenStreetMap and a small outreach CRM</li></ul>
+        <div class="tags"><span>Python</span><span>Flask</span><span>LLM APIs</span><span>Cloudflare Pages</span><span>GitHub API</span><span>SQLite</span></div>
+        <a class="btn" href="https://github.com/edvardna/sitegen" target="_blank" rel="noopener"><span>View on GitHub ↗</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="right" id="s7">
+    <article class="panel">
+      <div class="media"><img src="assets/dino-proto.jpg" alt="Dino Game Console prototype in its printed case" loading="lazy" style="object-position:50% 22%"><span class="cap">PROTOTYPE</span></div>
+      <div class="in">
+        <div class="k">06 · EMBEDDED GAME</div>
+        <h2>Dino Game Console</h2>
+        <p>A portable, battery-powered handheld running a Chrome-style Dino endless runner. Real-time game loop, button input and OLED graphics, all inside a 3D printed case.</p>
+        <ul><li>Real-time loop: movement, collisions, score</li><li>18650 cell + TP4056 charging + regulation</li><li>Custom printed case, battery holder, button mounts</li></ul>
+        <div class="tags"><span>C / C++</span><span>Arduino</span><span>OLED</span><span>Battery systems</span><span>3D printing</span></div>
+        <a class="btn" href="https://github.com/edvardna/Dino-game-console" target="_blank" rel="noopener"><span>View on GitHub ↗</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="left" id="s8">
+    <article class="panel">
+      <div class="media"><img src="assets/alu-build.jpg" alt="2-bit microcontroller built on breadboards" loading="lazy"><img src="assets/alu-schematic.jpg" alt="ALU logic schematic" loading="lazy" style="object-fit:contain;background:#fff"><span class="cap">BREADBOARD BUILD · HOVER FOR SCHEMATIC</span></div>
+      <div class="in">
+        <div class="k">07 · DIGITAL LOGIC</div>
+        <h2>2-Bit Microcontroller</h2>
+        <p>A complete computer built from discrete 74xx logic chips. ALU, registers, SRAM program memory, program counter and control unit run a full fetch, decode, execute cycle on their own.</p>
+        <ul><li>ALU with ADD, SUB, AND, OR</li><li>NE555 clock, flip-flop registers, SRAM</li><li>Designed in Logisim, validated in Multisim</li></ul>
+        <div class="tags"><span>Digital logic</span><span>74xx TTL</span><span>Logisim</span><span>Multisim</span><span>Computer architecture</span></div>
+        <a class="btn" href="https://github.com/edvardna/electronics-projects/tree/main/digital-alu-2bit" target="_blank" rel="noopener"><span>View on GitHub ↗</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="right" id="s9">
+    <article class="panel">
+      <div class="media"><img src="assets/iot-1.jpg" alt="Live temperature dashboard" loading="lazy" style="object-fit:contain;background:#000"><img src="assets/iot-2.jpg" alt="Pipeline log output" loading="lazy" style="object-fit:contain;background:#000"><span class="cap">FLASK DASHBOARD · HOVER FOR PIPELINE LOG</span></div>
+      <div class="in">
+        <div class="k">08 · IOT SYSTEMS</div>
+        <h2>IoT Edge Data Pipeline</h2>
+        <p>End-to-end IoT pipeline: an ESP32 publishes sensor data over MQTT, a Raspberry Pi processes it at the edge and routes each reading to the right database, and a Flask dashboard shows it live.</p>
+        <ul><li>MQTT through HiveMQ Cloud</li><li>MongoDB history, Redis live value, PostgreSQL metadata</li><li>Real-time Flask web dashboard</li></ul>
+        <div class="tags"><span>ESP32</span><span>MQTT</span><span>Python</span><span>Raspberry Pi</span><span>Databases</span></div>
+        <a class="btn" href="https://github.com/edvardna/electronics-projects/tree/main/iot-edge-data-pipeline" target="_blank" rel="noopener"><span>View on GitHub ↗</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="left" id="s10">
+    <article class="panel">
+      <div class="media"><img src="assets/plant.jpg" alt="Smart plant pot with integrated electronics" loading="lazy"><span class="cap">PROTOTYPE</span></div>
+      <div class="in">
+        <div class="k">09 · AUTOMATION</div>
+        <h2>Smart Plant System</h2>
+        <p>Sensor-based plant monitoring that reads soil moisture, temperature and humidity, then waters automatically when values cross a threshold. Built with Kevin Kovero.</p>
+        <ul><li>ESP32 master + Arduino Uno slave</li><li>Soil, temperature and humidity sensing</li><li>Relay-driven pump, threshold control</li></ul>
+        <div class="tags"><span>Embedded C / C++</span><span>ESP32</span><span>Sensors</span><span>Automation</span><span>3D printing</span></div>
+        <a class="btn" href="https://github.com/edvardna/smart-plant-project" target="_blank" rel="noopener"><span>View on GitHub ↗</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="right" id="s11">
+    <article class="panel">
+      <div class="media"><img src="assets/powerbank-1.jpg" alt="Finished power bank with USB meter" loading="lazy"><img src="assets/powerbank-2.jpg" alt="Power bank enclosure CAD model" loading="lazy" style="object-fit:contain;background:#fff"><span class="cap">BUILD · HOVER FOR CAD</span></div>
+      <div class="in">
+        <div class="k">10 · POWER ELECTRONICS</div>
+        <h2>Custom Power Bank</h2>
+        <p>A multi-cell 18650 power bank with protected charging, a 5 V boost stage, USB output and a built-in wireless charging pad, in a custom printed enclosure.</p>
+        <ul><li>LG 18650 cells + 1S BMS protection</li><li>TP4056 charging, MT3608 3.7 V to 5 V boost</li><li>Integrated wireless charging coil</li></ul>
+        <div class="tags"><span>Battery systems</span><span>DC-DC</span><span>BMS</span><span>Onshape</span><span>3D printing</span></div>
+        <a class="btn" href="https://github.com/edvardna/electronics-projects/tree/main/custom-power-bank" target="_blank" rel="noopener"><span>View on GitHub ↗</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="others" id="s12">
+    <h2 id="oh">More from<br>the bench.</h2>
+    <div class="og">
+      <a class="oc" href="https://github.com/edvardna/electronics-projects/tree/main/parametric-ball-chair" target="_blank" rel="noopener">
+        <div class="th"><img src="assets/chair-2.jpg" alt="Printed ball chair AirPods charger" loading="lazy"></div>
+        <div class="tx"><div class="k">CAD · 3D PRINTING</div><h3>Parametric Ball Chair</h3><p>Aarnio's iconic ball chair, redesigned in Onshape as a modular, printable piece. The prototype doubles as an AirPods charging stand.</p><span class="go">View on GitHub ↗</span></div></a>
+      <a class="oc" href="https://github.com/edvardna/electronics-projects/tree/main/Audi-drift-dashboard-toy" target="_blank" rel="noopener">
+        <div class="th"><img src="assets/audi.jpg" alt="Audi drift toy CAD model" loading="lazy" style="object-fit:contain;background:#fff"></div>
+        <div class="tx"><div class="k">PRODUCT DESIGN</div><h3>Audi Drift Dashboard Toy</h3><p>An Audi-inspired car body on a mechanical pivot base that tilts to mimic drifting. Designed in Onshape, ready for sensors.</p><span class="go">View on GitHub ↗</span></div></a>
+      <a class="oc" href="https://github.com/edvardna/electronics-projects/tree/main/watch-swipe-app" target="_blank" rel="noopener">
+        <div class="th"><img src="assets/watch.jpg" alt="Watch swipe app on a phone" loading="lazy"></div>
+        <div class="tx"><div class="k">WEB APP</div><h3>Watch Swipe App</h3><p>Tinder-style swiping through watch designs, with every like and dislike stored in Firebase to guide which designs get built.</p><span class="go">View on GitHub ↗</span></div></a>
     </div>
+  </section>
 
-    <!-- ========================================================= -->
-    <!-- ================= SMART PLANT SYSTEM ==================== -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="Embedded Systems, C / C++, IoT Systems, Automation, Electronics Design, CAD Design, 3D Printing, Battery Systems">
-      <div class="project-top">
-        <h3 class="project-title">Smart Plant System</h3>
-        <div class="project-type">Featured Project</div>
-      </div>
-      <div class="project-desc">
-        Sensor-based plant monitoring and automation system designed for real-time environmental tracking and expandable smart care functionality.
-      </div>
-      <div class="tags">
-        <span>Embedded Systems</span>
-        <span>C / C++</span>
-        <span>IoT Systems</span>
-        <span>Automation</span>
-        <span>Electronics Design</span>
-        <span>CAD Design</span>
-        <span>3D Printing</span>
-        <span>Battery Systems</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/smart-plant-project" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
-      </div>
-    </div>
+  <section class="end" id="s13">
+    <p>Want to build something together?</p>
+    <a class="btn" href="https://github.com/edvardna" target="_blank" rel="noopener"><span>GitHub · edvardna ↗</span></a>
+    <small>© 2026 EDVÁRD NAGY · HELSINKI</small>
+  </section>
+</main>
 
-    <!-- ========================================================= -->
-    <!-- ================= WATCH SWIPE APP ======================= -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="IoT Systems, Web Interfaces">
-      <div class="project-top">
-        <h3 class="project-title">Watch Swipe App</h3>
-        <div class="project-type">Grouped Project</div>
-      </div>
-      <div class="project-desc">
-        Swipe-based watch discovery interface with Firebase-backed preference collection to support data-driven design decisions.
-      </div>
-      <div class="tags">
-        <span>IoT Systems</span>
-        <span>Web Interfaces</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/electronics-projects/tree/main/watch-swipe-app" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
-      </div>
-    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script type="module">
+import * as THREE from 'three';
+gsap.registerPlugin(ScrollTrigger, SplitText);
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobile = innerWidth < 860;
 
-    <!-- ========================================================= -->
-    <!-- ================= CUSTOM POWER BANK ===================== -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="Battery Systems, Electronics Design, Electrical Engineering, CAD Design, 3D Printing">
-      <div class="project-top">
-        <h3 class="project-title">Custom Power Bank</h3>
-        <div class="project-type">Grouped Project</div>
-      </div>
-      <div class="project-desc">
-        Portable 18650-based power bank with BMS protection, boost conversion, USB output, and integrated wireless charging.
-      </div>
-      <div class="tags">
-        <span>Battery Systems</span>
-        <span>Electronics Design</span>
-        <span>Electrical Engineering</span>
-        <span>CAD Design</span>
-        <span>3D Printing</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/electronics-projects/tree/main/custom-power-bank" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
-      </div>
-    </div>
+// photo galleries: thumbnails swap the main image
+$$('.thumbs').forEach(t => { const main = document.getElementById(t.dataset.main), bs = [...t.children]; bs[0].classList.add('on');
+  bs.forEach(b => b.addEventListener('click', () => { bs.forEach(x => x.classList.toggle('on', x === b));
+    gsap.to(main, { opacity:0, duration:.2, onComplete:() => { main.src = b.querySelector('img').src; gsap.to(main, { opacity:1, duration:.35 }); } }); })); });
 
-    <!-- ========================================================= -->
-    <!-- ================= IOT EDGE DATA PIPELINE ================ -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="IoT Systems, Web Interfaces, Embedded Systems, C / C++">
-      <div class="project-top">
-        <h3 class="project-title">IoT Edge Data Pipeline</h3>
-        <div class="project-type">Grouped Project</div>
-      </div>
-      <div class="project-desc">
-        Raspberry Pi based IoT pipeline using MQTT, Python, MongoDB, Redis, PostgreSQL, and Flask for real-time sensor processing and dashboard visualization.
-      </div>
-      <div class="tags">
-        <span>IoT Systems</span>
-        <span>Web Interfaces</span>
-        <span>Embedded Systems</span>
-        <span>C / C++</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/electronics-projects/tree/main/iot-edge-data-pipeline" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
-      </div>
-    </div>
+await document.fonts.ready;
 
-    <!-- ========================================================= -->
-    <!-- ========== CUSTOM 2-BIT MICROCONTROLLER SYSTEM ========= -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="Electronics Design, Embedded Systems">
-      <div class="project-top">
-        <h3 class="project-title">Custom 2-Bit Microcontroller System</h3>
-        <div class="project-type">Grouped Project</div>
-      </div>
-      <div class="project-desc">
-        ALU-based 2-bit microcontroller architecture with registers, control logic, SRAM, and clocked execution designed in Logisim and Multisim.
-      </div>
-      <div class="tags">
-        <span>Electronics Design</span>
-        <span>Embedded Systems</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/electronics-projects/tree/main/digital-alu-2bit" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
-      </div>
-    </div>
+/* ---------------- particle shapes, sampled from 2D drawings ---------------- */
+const N = mobile ? 9000 : 22000;
+const camZ = mobile ? 13 : 10, visW = 2 * camZ * Math.tan(Math.PI / 8) * ((innerWidth || 16) / (innerHeight || 10));
+const k = Math.min(1, visW * .85 / 5.4);   // shrink icon shapes on narrow screens
+function sample(w, h, draw, scale, ox = 0, oy = 0, depth = .35){
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const x = c.getContext('2d'); x.fillStyle = x.strokeStyle = '#fff'; x.lineCap = x.lineJoin = 'round'; draw(x, w, h);
+  const d = x.getImageData(0, 0, w, h).data, pts = [];
+  for (let j = 0; j < h; j += 2) for (let i = 0; i < w; i += 2) if (d[(j * w + i) * 4 + 3] > 128) pts.push(i, j);
+  if (!pts.length) pts.push(w / 2, h / 2);   // never hand the shader NaNs
+  const out = new Float32Array(N * 3), s = scale / w;
+  for (let n = 0; n < N; n++) { const r = (Math.random() * pts.length / 2 | 0) * 2;
+    out[n * 3] = (pts[r] - w / 2 + Math.random() * 2) * s + ox; out[n * 3 + 1] = -(pts[r + 1] - h / 2 + Math.random() * 2) * s + oy; out[n * 3 + 2] = (Math.random() - .5) * depth; }
+  return out;
+}
+const sy = mobile ? 1.2 : 0;
+const side = i => (mobile ? 0 : (i % 2 ? 2.8 : -2.8));   // shape sits opposite its text panel
+const font = (x, size, wt = 800) => x.font = `${wt} ${size}px Syne, sans-serif`;
+const fitText = (x, w, h, txt) => { font(x, 200); font(x, Math.min(200, 200 * w * .94 / x.measureText(txt).width)); x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(txt, w / 2, h / 2); };
+const shapes = [
+  // 0 hero: name
+  sample(1400, 360, (x, w, h) => fitText(x, w, h, 'EDVÁRD NAGY'), Math.min(11, visW * .9), 0, mobile ? 1.6 : .9, .6),
+  // 1 intro: lightning bolt
+  sample(400, 400, x => { x.beginPath(); x.moveTo(230, 20); x.lineTo(110, 220); x.lineTo(195, 220); x.lineTo(150, 380); x.lineTo(300, 160); x.lineTo(210, 160); x.lineTo(265, 20); x.closePath(); x.fill(); }, 5.2 * k, mobile ? 0 : 3.2, sy),
+  // 2 Robocar: mecanum car from above
+  sample(400, 400, x => { x.lineWidth = 18; x.beginPath(); x.roundRect(120, 70, 160, 260, 26); x.stroke();
+    [[78, 120], [322, 120], [78, 280], [322, 280]].forEach(([a, b], i) => { x.save(); x.translate(a, b); x.beginPath(); x.roundRect(-28, -52, 56, 104, 16); x.fill();
+      x.globalCompositeOperation = 'destination-out'; x.lineWidth = 7; for (let r = -36; r <= 36; r += 18) { x.beginPath(); x.moveTo(-24, r + (i % 2 ? -10 : 10)); x.lineTo(24, r + (i % 2 ? 10 : -10)); x.stroke(); } x.restore(); });
+    x.beginPath(); x.arc(200, 200, 30, 0, 7); x.fill(); x.fillRect(150, 82, 100, 18); }, 5.2 * k, side(0), sy),
+  // 3 Lighting: pendant lamp and its light cone
+  sample(400, 400, x => { x.fillRect(196, 0, 8, 80); x.beginPath(); x.moveTo(168, 80); x.lineTo(232, 80); x.lineTo(268, 150); x.lineTo(132, 150); x.closePath(); x.fill();
+    x.beginPath(); x.arc(200, 160, 20, 0, 7); x.fill();
+    for (let i = 0; i < 2600; i++) { const v = Math.random(), u = Math.random() * 2 - 1, y = 180 + v * 210, hw = 55 + v * 135; x.fillRect(200 + u * hw * Math.sqrt(Math.random()), y, 3, 3); }
+    x.fillRect(40, 388, 320, 6); }, 5.4 * k, side(1), sy),
+  // 4 Go-kart: top view
+  sample(400, 400, x => { x.lineWidth = 14; x.beginPath(); x.moveTo(150, 40); x.lineTo(250, 40); x.lineTo(270, 120); x.lineTo(270, 330); x.lineTo(130, 330); x.lineTo(130, 120); x.closePath(); x.stroke();
+    [[85, 95], [315, 95], [80, 300], [320, 300]].forEach(([a, b]) => { x.beginPath(); x.roundRect(a - 24, b - 44, 48, 88, 14); x.fill(); });
+    x.fillRect(110, 88, 180, 12); x.fillRect(105, 292, 190, 14); x.beginPath(); x.roundRect(160, 210, 80, 90, 18); x.fill();
+    x.beginPath(); x.arc(200, 155, 26, 0, 7); x.lineWidth = 10; x.stroke(); }, 5.2 * k, side(2), sy),
+  // 5 Vault 111: vault door
+  sample(400, 400, x => { x.lineWidth = 24; x.beginPath(); x.arc(200, 200, 165, 0, 7); x.stroke();
+    for (let i = 0; i < 16; i++) { const a = i / 16 * 6.283; x.beginPath(); x.arc(200 + Math.cos(a) * 132, 200 + Math.sin(a) * 132, 9, 0, 7); x.fill(); }
+    x.lineWidth = 14; x.beginPath(); x.arc(200, 200, 62, 0, 7); x.stroke();
+    for (let i = 0; i < 6; i++) { const a = i / 6 * 6.283; x.beginPath(); x.moveTo(200 + Math.cos(a) * 20, 200 + Math.sin(a) * 20); x.lineTo(200 + Math.cos(a) * 100, 200 + Math.sin(a) * 100); x.stroke(); }
+    x.beginPath(); x.arc(200, 200, 20, 0, 7); x.fill(); x.fillRect(4, 130, 26, 44); x.fillRect(4, 226, 26, 44); }, 5.2 * k, side(3), sy),
+  // 6 Sitegen: browser window with code brackets
+  sample(400, 400, x => { x.lineWidth = 16; x.beginPath(); x.roundRect(30, 70, 340, 260, 24); x.stroke(); x.fillRect(30, 70, 340, 50);
+    x.globalCompositeOperation = 'destination-out'; [70, 100, 130].forEach(a => { x.beginPath(); x.arc(a, 95, 9, 0, 7); x.fill(); });
+    x.globalCompositeOperation = 'source-over'; font(x, 120, 800); x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('</>', 200, 228); }, 5.4 * k, side(4), sy),
+  // 7 Dino: handheld console
+  sample(400, 400, x => { x.lineWidth = 18; x.beginPath(); x.roundRect(110, 30, 180, 340, 30); x.stroke(); x.fillRect(140, 70, 120, 90);
+    x.beginPath(); x.arc(160, 260, 22, 0, 7); x.arc(240, 230, 22, 0, 7); x.fill(); font(x, 26, 700); x.textAlign = 'center'; x.fillText('DINO', 200, 330); }, 5.2 * k, side(5), sy),
+  // 8 2-bit MCU: DIP chip
+  sample(400, 400, x => { x.lineWidth = 16; x.beginPath(); x.roundRect(110, 60, 180, 280, 14); x.stroke();
+    for (let i = 0; i < 7; i++) { x.fillRect(62, 82 + i * 37, 40, 14); x.fillRect(298, 82 + i * 37, 40, 14); }
+    x.beginPath(); x.arc(200, 60, 22, 0, Math.PI); x.fill(); font(x, 44, 800); x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('ALU', 200, 205); }, 5.2 * k, side(6), sy),
+  // 9 IoT pipeline: sensor -> cloud -> edge -> databases
+  sample(400, 400, x => { x.lineWidth = 10; x.beginPath(); x.moveTo(80, 300); x.lineTo(200, 110); x.lineTo(320, 300); x.lineTo(80, 300); x.moveTo(200, 110); x.lineTo(200, 300); x.stroke();
+    x.beginPath(); x.arc(170, 100, 40, 0, 7); x.arc(225, 90, 50, 0, 7); x.arc(265, 115, 34, 0, 7); x.fill();
+    [[80, 300], [200, 300], [320, 300]].forEach(([a, b]) => { x.beginPath(); x.ellipse(a, b, 42, 14, 0, 0, 7); x.fill(); x.fillRect(a - 42, b, 84, 46); x.beginPath(); x.ellipse(a, b + 46, 42, 14, 0, 0, 7); x.fill(); }); }, 5.4 * k, side(7), sy),
+  // 10 Smart plant: leaf
+  sample(400, 400, x => { x.beginPath(); x.moveTo(200, 370); x.bezierCurveTo(60, 300, 40, 120, 200, 30); x.bezierCurveTo(360, 120, 340, 300, 200, 370); x.fill();
+    x.globalCompositeOperation = 'destination-out'; x.lineWidth = 9; x.beginPath(); x.moveTo(200, 360); x.lineTo(200, 70);
+    for (let i = 0; i < 5; i++) { x.moveTo(200, 300 - i * 48); x.lineTo(120, 240 - i * 45); x.moveTo(200, 300 - i * 48); x.lineTo(280, 240 - i * 45); } x.stroke(); }, 5.2 * k, side(8), sy),
+  // 11 Power bank: battery with bolt
+  sample(400, 400, x => { x.lineWidth = 18; x.beginPath(); x.roundRect(120, 70, 160, 290, 26); x.stroke(); x.fillRect(165, 36, 70, 30);
+    x.beginPath(); x.moveTo(215, 110); x.lineTo(160, 225); x.lineTo(200, 225); x.lineTo(180, 320); x.lineTo(245, 195); x.lineTo(205, 195); x.lineTo(232, 110); x.closePath(); x.fill(); }, 5.2 * k, side(9), sy),
+  // 12 more projects: galaxy
+  (() => { const o = new Float32Array(N * 3); for (let n = 0; n < N; n++) { const arm = n % 3, r = Math.pow(Math.random(), .6) * 7.5, a = r * .7 + arm * 2.094 + (Math.random() - .5) * .6;
+    o[n * 3] = Math.cos(a) * r; o[n * 3 + 1] = (Math.random() - .5) * .5 * (1 - r / 8) - 1; o[n * 3 + 2] = Math.sin(a) * r - 3; } return o; })(),
+  // 13 outro
+  sample(1400, 360, (x, w, h) => fitText(x, w, h, "LET'S BUILD"), Math.min(10, visW * .88), 0, mobile ? 1.6 : 1.1, .6)
+];
 
-    <!-- ========================================================= -->
-    <!-- ================= PARAMETRIC BALL CHAIR ================ -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="CAD Design, 3D Printing">
-      <div class="project-top">
-        <h3 class="project-title">Parametric Ball Chair</h3>
-        <div class="project-type">Grouped Project</div>
-      </div>
-      <div class="project-desc">
-        Modular 3D printable reinterpretation of the classic ball chair, developed through parametric CAD and additive manufacturing thinking.
-      </div>
-      <div class="tags">
-        <span>CAD Design</span>
-        <span>3D Printing</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/electronics-projects/tree/main/parametric-ball-chair" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
-      </div>
-    </div>
+/* ---------------- renderer + points ---------------- */
+const renderer = new THREE.WebGLRenderer({ canvas:$('#gl'), antialias:false });
+const dpr = Math.min(devicePixelRatio, 1.75); renderer.setPixelRatio(dpr); renderer.setSize(innerWidth, innerHeight); renderer.setClearColor('#04050a');
+const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, .1, 100); camera.position.z = camZ;
+const geo = new THREE.BufferGeometry();
+const aFrom = new THREE.BufferAttribute(shapes[0].slice(), 3), aTo = new THREE.BufferAttribute(shapes[1].slice(), 3);
+const aR = new Float32Array(N); for (let i = 0; i < N; i++) aR[i] = Math.random();
+geo.setAttribute('position', new THREE.BufferAttribute(shapes[0].slice(), 3)); geo.setAttribute('aFrom', aFrom); geo.setAttribute('aTo', aTo); geo.setAttribute('aR', new THREE.BufferAttribute(aR, 1));
+const U = { uT:{ value:0 }, uTime:{ value:0 }, uSize:{ value:(mobile ? 34 : 40) * dpr }, uMouse:{ value:new THREE.Vector3(99, 99, 0) }, uVel:{ value:0 }, uIntro:{ value:reduce ? 1 : 0 },
+  uC1:{ value:new THREE.Color('#2f7bff') }, uC2:{ value:new THREE.Color('#5ac8fa') }, uC3:{ value:new THREE.Color('#c4b5fd') } };
+const mat = new THREE.ShaderMaterial({ uniforms:U, transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+  vertexShader:`uniform float uT,uTime,uSize,uVel,uIntro;uniform vec3 uMouse;attribute vec3 aFrom,aTo;attribute float aR;varying float vR,vB;
+    void main(){
+      float d=aR*.45, t=smoothstep(d,d+.55,uT);
+      vec3 p=mix(aFrom,aTo,t);
+      float burst=sin(t*3.14159)*(1.+uVel);
+      p+=burst*vec3(sin(aR*91.+uTime*1.1),cos(aR*57.+uTime*1.3),sin(aR*13.+uTime*.7))*1.1;
+      p+=vec3(sin(uTime*.8+aR*40.),cos(uTime*.7+aR*30.),sin(uTime*.5+aR*20.))*.03;
+      vec2 dm=p.xy-uMouse.xy; float md=length(dm);
+      p.xy+=normalize(dm+1e-4)*smoothstep(1.4,0.,md)*.9;
+      p.z+=smoothstep(1.4,0.,md)*.8;
+      float intro=smoothstep(aR*.6,aR*.6+.4,uIntro);
+      p=mix(vec3(aFrom.x*3.+sin(aR*200.)*6.,aFrom.y*3.+cos(aR*300.)*6.,-8.+aR*14.),p,intro);
+      vec4 mv=modelViewMatrix*vec4(p,1.);
+      gl_PointSize=uSize*(.45+aR*.9)/-mv.z;
+      gl_Position=projectionMatrix*mv; vR=aR; vB=burst+smoothstep(1.4,0.,md);
+    }`,
+  fragmentShader:`uniform vec3 uC1,uC2,uC3;varying float vR,vB;
+    void main(){ vec2 c=gl_PointCoord-.5; float l=length(c); if(l>.5) discard;
+      float a=pow(smoothstep(.5,0.,l),1.6);
+      vec3 col=mix(uC1,uC2,vR); col=mix(col,uC3,clamp(vB*.5,0.,1.));
+      gl_FragColor=vec4(col*1.2,a*.85); }` });
+const points = new THREE.Points(geo, mat); points.frustumCulled = false; scene.add(points);
 
-    <!-- ========================================================= -->
-    <!-- ================= LIGHTING DESIGN PORTFOLIO ============ -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="Lighting Design, Electrical Engineering, CAD Design, Automation">
-      <div class="project-top">
-        <h3 class="project-title">Lighting Design Portfolio</h3>
-        <div class="project-type">Grouped Project</div>
-      </div>
-      <div class="project-desc">
-        Professional lighting design portfolio covering residential, commercial, facade, industrial, architectural, emergency, sports, DMX, and custom fixture work.
-      </div>
-      <div class="tags">
-        <span>Lighting Design</span>
-        <span>Electrical Engineering</span>
-        <span>CAD Design</span>
-        <span>Automation</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/electronics-projects/tree/main/Lighting%20Design" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
-      </div>
-    </div>
+// faint star dust behind
+const dust = new THREE.BufferGeometry(), dp = new Float32Array(1500 * 3);
+for (let i = 0; i < dp.length; i++) dp[i] = (Math.random() - .5) * (i % 3 === 2 ? 20 : 40);
+dust.setAttribute('position', new THREE.BufferAttribute(dp, 3));
+const dustPts = new THREE.Points(dust, new THREE.PointsMaterial({ size:.04, color:'#6b7cff', transparent:true, opacity:.5 })); dustPts.position.z = -6; scene.add(dustPts);
 
-    <!-- ========================================================= -->
-    <!-- ================= AUDI DRIFT DASHBOARD TOY ============= -->
-    <!-- ========================================================= -->
-    <div class="project" data-skills="CAD Design, 3D Printing">
-      <div class="project-top">
-        <h3 class="project-title">Audi Drift Dashboard Toy</h3>
-        <div class="project-type">Grouped Project</div>
-      </div>
-      <div class="project-desc">
-        Audi-inspired interactive mechanical dashboard concept combining automotive styling, physical interaction, and custom product design.
-      </div>
-      <div class="tags">
-        <span>CAD Design</span>
-        <span>3D Printing</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/edvardna/electronics-projects/tree/main/Audi-drift-dashboard-toy" target="_blank" rel="noopener noreferrer" class="btn">View Project →</a>
-      </div>
-    </div>
+/* ---------------- mouse in world space ---------------- */
+const ray = new THREE.Raycaster(), plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), hitP = new THREE.Vector3(), ndc = new THREE.Vector2();
+const mouseT = new THREE.Vector3(99, 99, 0);
+addEventListener('pointermove', e => { ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera); if (ray.ray.intersectPlane(plane, hitP)) mouseT.copy(hitP); });
+document.addEventListener('pointerleave', () => mouseT.set(99, 99, 0));
 
-  </div>
-</div>
+/* ---------------- scroll -> morph progress ---------------- */
+const sections = $$('main > section');
+let target = 0, cur = 0, seg = -1;
+function setSeg(s){ if (s === seg) return; seg = s; aFrom.array.set(shapes[s]); aTo.array.set(shapes[Math.min(s + 1, shapes.length - 1)]); aFrom.needsUpdate = aTo.needsUpdate = true; }
+setSeg(0);
+let lenis;
+if (!reduce) { lenis = new Lenis({ lerp:.075 }); lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0); }
+// each section's arrival is one 0..1 step; the sum of all steps is the shape index
+const steps = sections.slice(1).map(s => ScrollTrigger.create({ trigger:s, start:'top bottom', end:'top top' }));
+let vel = 0;
+ScrollTrigger.create({ onUpdate:self => vel = Math.min(2.5, Math.abs(self.getVelocity()) / 1500) });
+$$('nav a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); lenis ? lenis.scrollTo(a.getAttribute('href'), { duration:2.4 }) : $(a.getAttribute('href')).scrollIntoView(); }));
 
-<script>
-  const skillButtons = document.querySelectorAll('.skill');
-  const projects = document.querySelectorAll('.project');
-  const showAllBtn = document.getElementById('showAllBtn');
+/* ---------------- loop ---------------- */
+const clock = new THREE.Clock();
+renderer.setAnimationLoop(() => {
+  const t = clock.getElapsedTime();
+  target = steps.reduce((a, s) => a + s.progress, 0);
+  cur += (target - cur) * (reduce ? 1 : .08);
+  const s = Math.min(Math.floor(cur), shapes.length - 2); setSeg(s);
+  U.uT.value = cur - s; U.uTime.value = t; U.uVel.value += (vel - U.uVel.value) * .08; vel *= .92;
+  U.uMouse.value.lerp(mouseT, .12);
+  const gal = Math.max(0, 1 - Math.abs(cur - 12));   // 1 while the galaxy is formed, 0 for other shapes
+  points.rotation.y = Math.sin(t * .25) * .12 + gal * Math.sin(t * .15) * 1.5;
+  points.rotation.x = Math.sin(t * .2) * .05 + gal * .45;
+  dustPts.rotation.y = t * .02;
+  $('#cur').textContent = String(Math.min(Math.round(cur) + 1, 14)).padStart(2, '0'); $('#railFill').style.transform = `scaleY(${cur / 13})`;
+  renderer.render(scene, camera);
+});
+addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
 
-  let activeFilter = null;
-
-  function applyFilter(filter) {
-    projects.forEach(project => {
-      const skills = project.dataset.skills.split(',').map(skill => skill.trim());
-      if (!filter || skills.includes(filter)) {
-        project.classList.remove('hidden');
-      } else {
-        project.classList.add('hidden');
-      }
-    });
-  }
-
-  skillButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const selectedSkill = button.dataset.filter;
-
-      if (activeFilter === selectedSkill) {
-        activeFilter = null;
-        skillButtons.forEach(btn => btn.classList.remove('active'));
-        applyFilter(null);
-        return;
-      }
-
-      activeFilter = selectedSkill;
-      skillButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      applyFilter(selectedSkill);
-    });
+/* ---------------- html motion ---------------- */
+if (!reduce) {
+  gsap.to(U.uIntro, { value:1, duration:3.2, ease:'expo.out', delay:.2 });
+  const tg = SplitText.create('#tag', { type:'words', mask:'words' });
+  gsap.from(tg.words, { yPercent:130, stagger:.1, duration:1.2, ease:'expo.out', delay:1.2 });
+  gsap.from('.hero .role, .hero .hint, nav, .rail', { opacity:0, y:14, duration:1, stagger:.1, delay:1.6 });
+  gsap.to('.hero .hint', { opacity:.35, duration:1, repeat:-1, yoyo:true, delay:3 });
+  const ip = SplitText.create('#introP', { type:'words' });
+  gsap.fromTo(ip.words, { opacity:.1, filter:'blur(8px)' }, { opacity:1, filter:'blur(0px)', stagger:.05, ease:'none', scrollTrigger:{ trigger:'#s1', start:'top 70%', end:'center 45%', scrub:true } });
+  gsap.from('#quals .q', { y:30, opacity:0, stagger:.08, duration:.8, ease:'expo.out', scrollTrigger:{ trigger:'#quals', start:'top 90%' } });
+  gsap.from('#skills span', { y:24, opacity:0, stagger:.04, duration:.7, ease:'back.out(2)', scrollTrigger:{ trigger:'#skills', start:'top 85%' } });
+  $$('.panel').forEach(p => {
+    const h = SplitText.create(p.querySelector('h2'), { type:'words,chars' });
+    gsap.timeline({ scrollTrigger:{ trigger:p, start:'top 78%', toggleActions:'play none none reverse' } })
+      .from(p, { y:80, opacity:0, scale:.94, rotateX:12, transformPerspective:900, duration:1.1, ease:'expo.out' })
+      .from(p.querySelector('.media'), { clipPath:'inset(0 0 100% 0 round 18px)', duration:1, ease:'expo.inOut' }, .1)
+      .from(h.chars, { rotateX:-90, opacity:0, transformOrigin:'50% 50% -20px', stagger:.025, duration:.8, ease:'back.out(2)' }, .2)
+      .from(p.querySelectorAll('.in p, li, .tags span, .btn'), { y:20, opacity:0, stagger:.04, duration:.6, ease:'power3.out' }, .35);
+    gsap.to(p, { yPercent:-10, ease:'none', scrollTrigger:{ trigger:p, start:'top bottom', end:'bottom top', scrub:true } });
   });
-
-  showAllBtn.addEventListener('click', () => {
-    activeFilter = null;
-    skillButtons.forEach(btn => btn.classList.remove('active'));
-    applyFilter(null);
-  });
+  const oh = SplitText.create('#oh', { type:'words', mask:'words' });
+  gsap.from(oh.words, { yPercent:130, stagger:.08, duration:1.1, ease:'expo.out', scrollTrigger:{ trigger:'#s7', start:'top 70%' } });
+  ScrollTrigger.batch('.oc', { start:'top 90%', once:true, onEnter:els => gsap.from(els, { y:60, opacity:0, stagger:.08, duration:.9, ease:'expo.out' }) });
+}
 </script>
-
 </body>
 </html>
